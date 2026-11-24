@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Реєстрація | EduEvents{% endblock %}
+{% block content %}
+<h1>Реєстрація на подію</h1>
+<form method="post" class="form-card" novalidate>
+  {{ form.hidden_tag() }}
+  {% for field in [form.full_name, form.email, form.event, form.message] %}
+    <div class="form-row">
+      {{ field.label }}
+      {{ field(class="field") }}
+      {% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+    </div>
+  {% endfor %}
+  {{ form.submit(class="button") }}
+</form>
+{% endblock %}

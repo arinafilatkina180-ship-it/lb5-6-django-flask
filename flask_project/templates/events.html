@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Події | EduEvents{% endblock %}
+{% block content %}
+<h1>{{ page_name }}</h1>
+<p>У каталозі {{ events|length }} навчальні події.</p>
+<div class="cards">
+{% if events %}
+  {% for event in events %}
+    <article class="card"><h2>{{ event.title }}</h2><p>{{ event.description|default("Опис готується.") }}</p><p>Вільних місць: {{ event.seats }}</p></article>
+  {% endfor %}
+{% else %}
+  <p>Список подій порожній.</p>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "events/base.html" %}
+{% block title %}Реєстрація | EduEvents{% endblock %}
+{% block content %}
+<h1>Реєстрація на подію</h1>
+<form method="post" class="form-card" novalidate>
+  {% csrf_token %}
+  {% for field in form %}
+    <div class="form-row">
+      {{ field.label_tag }}
+      {{ field }}
+      {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+      {% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+    </div>
+  {% endfor %}
+  {% if form.non_field_errors %}<div class="error">{{ form.non_field_errors }}</div>{% endif %}
+  <button class="button" type="submit">Надіслати заявку</button>
+</form>
+{% endblock %}

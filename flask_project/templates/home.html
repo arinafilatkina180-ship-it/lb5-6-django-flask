@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Головна | EduEvents{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Платформа навчальних подій</p>
+  <h1>{{ page_name }}</h1>
+  <p>Обирайте напрям, реєструйтеся та розвивайте практичні навички.</p>
+  <a class="button" href="{{ url_for('event_list') }}">Переглянути події</a>
+</section>
+<h2>Доступно подій: {{ events_count + 0 }}</h2>
+<div class="cards">
+{% for event in events %}
+  <article class="card"><h3>{{ event.title }}</h3><p>{{ event.description|truncate(100) }}</p><span>Місць: {{ event.seats }}</span></article>
+{% else %}
+  <p>Наразі подій немає.</p>
+{% endfor %}
+</div>
+{% endblock %}
